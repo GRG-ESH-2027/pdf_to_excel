@@ -1,0 +1,34 @@
+Sub ReverseTextInCell()
+    Dim rng As Range
+    Dim cell As Range
+    Dim originalText As String
+    Dim reversedText As String
+    Dim i As Integer
+    
+    ' اختر النطاق الذي يحتوي على النصوص
+    Set rng = Selection
+    
+    ' لكل خلية في النطاق
+    For Each cell In rng
+        ' إذا كانت الخلية تحتوي على نص
+        If Not IsEmpty(cell.Value) And VarType(cell.Value) = vbString Then
+            originalText = cell.Value
+            reversedText = ""
+            
+            ' عكس النص
+            For i = Len(originalText) To 1 Step -1
+                reversedText = reversedText & Mid(originalText, i, 1)
+            Next i
+            
+            ' وضع النص العكسي في الخلية
+            cell.Value = reversedText
+        End If
+    Next cell
+End Sub
+============================================
+كيفية تشغيل الماكرو:
+عد إلى Excel (اضغط على Alt + F11 لإغلاق نافذة محرر VBA).
+حدد النطاق (الخلايا) التي تريد عكس النصوص فيها.
+اضغط على Alt + F8 لفتح نافذة الماكرو، ثم اختر ReverseTextInCell واضغط Run.
+==============================
+python -m PyInstaller --noconfirm --onefile --windowed --add-data "design.ui;." pdf_to_excel.py
